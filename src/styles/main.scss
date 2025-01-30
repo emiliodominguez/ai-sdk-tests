@@ -1,0 +1,21 @@
+@use "./hljs-dracula";
+
+*:not(.marked *),
+*:not(.marked *)::before,
+*:not(.marked *)::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background-color: #222;
+	color: #fff;
+	line-height: 2;
+
+	*:not(.marked):not(code) {
+		font-family: inherit;
+	}
+}

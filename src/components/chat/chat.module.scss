@@ -1,0 +1,172 @@
+$prompt-height: 100px;
+
+%btn {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	transition:
+		opacity ease 250ms,
+		background-color ease 250ms,
+		color ease 250ms;
+	cursor: pointer;
+
+	&:disabled {
+		opacity: 0.5;
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 2px #aaa;
+	}
+}
+
+.chat {
+	height: 100dvh;
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-rows: 1fr $prompt-height;
+	gap: 1rem;
+	padding: 2rem;
+	overflow-y: auto;
+}
+
+.messages,
+.prompt {
+	width: 100%;
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+.messages {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding-inline: 1rem;
+	list-style: none;
+
+	.message {
+		position: relative;
+
+		&.user {
+			max-width: 80%;
+			align-self: flex-end;
+			background-color: #444;
+			border-radius: 2rem;
+			padding-inline: 2rem;
+
+			.delete {
+				@extend %btn;
+
+				position: absolute;
+				top: 50%;
+				right: calc(100% + 0.5rem);
+				transform: translateY(-50%);
+				border-radius: 4px;
+				display: flex;
+				align-items: center;
+				padding: 0.25rem;
+
+				&:hover,
+				&:focus-within {
+					svg {
+						opacity: 1;
+					}
+				}
+
+				svg {
+					display: block;
+					fill: #fff;
+					height: 1rem;
+					opacity: 0.5;
+					transition: opacity ease 250ms;
+				}
+			}
+		}
+
+		// &.assistant {}
+
+		// &.system {}
+
+		// &.data {}
+
+		:global(.hljs) {
+			padding: 1rem;
+			border-radius: 8px;
+		}
+	}
+}
+
+.prompt {
+	$btn-size: 2rem;
+	$btn-offset: 1rem;
+	$box-shadow-size: 2px;
+
+	position: sticky;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	background-color: #444;
+	padding-right: $btn-size + $btn-offset;
+	align-items: center;
+	border-radius: 1rem;
+	padding: 1rem;
+	gap: 1rem;
+	transition: box-shadow ease 250ms;
+	z-index: 1;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		height: 2rem;
+		background-color: #222;
+		z-index: -1;
+	}
+
+	&:focus-within {
+		box-shadow: 0 0 0 $box-shadow-size #aaa inset;
+	}
+
+	textarea,
+	button {
+		display: block;
+		height: 100%;
+	}
+
+	textarea {
+		height: $prompt-height;
+		font-family: inherit;
+		background-color: transparent;
+		font-size: 1rem;
+		color: #fff;
+		border: none;
+		outline: none;
+		resize: none;
+
+		&::placeholder {
+			color: #aaa;
+		}
+	}
+
+	button {
+		@extend %btn;
+
+		display: flex;
+		position: absolute;
+		bottom: $btn-offset;
+		right: $btn-offset;
+		width: $btn-size;
+		height: $btn-size;
+		border-radius: 50%;
+		background-color: #fff;
+
+		svg {
+			display: block;
+			height: 1rem;
+			margin: auto;
+		}
+	}
+}
