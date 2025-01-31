@@ -1,0 +1,49 @@
+.toggle,
+.overlay,
+.options {
+	position: fixed;
+	z-index: 100;
+}
+
+.overlay,
+.options {
+	top: 0;
+	height: 100dvh;
+}
+
+.overlay {
+	width: 100dvw;
+	background-color: rgba(#222, 0.5);
+	backdrop-filter: blur(5px);
+}
+
+.options {
+	width: 75dvw;
+	background-color: #333;
+	padding: 1.5rem;
+	border-right: 1px solid #666;
+
+	&.open {
+	}
+
+	label,
+	label > span {
+		display: block;
+	}
+
+	textarea {
+		width: 100%;
+		min-height: 100px;
+		max-height: 200px;
+		resize: vertical;
+	}
+}
+
+.toggle {
+	top: 1rem;
+	right: 1rem;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	background-color: #fff;
+}

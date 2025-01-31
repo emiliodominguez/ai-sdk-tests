@@ -1,4 +1,4 @@
-import type { CoreMessage } from "ai";
+import type { CoreMessage, CoreSystemMessage } from "ai";
 
 /**
  * Streams the chat response from the server
@@ -10,6 +10,7 @@ import type { CoreMessage } from "ai";
 export async function streamChatResponse(args: {
 	prompt: string;
 	messages: CoreMessage[];
+	system?: CoreSystemMessage;
 	onData: (data: string) => void | Promise<void>;
 	onFinish?: () => void | Promise<void>;
 	onError?: (error: Error) => void | Promise<void>;
@@ -19,7 +20,8 @@ export async function streamChatResponse(args: {
 			method: "POST",
 			body: JSON.stringify({
 				prompt: args.prompt,
-				messages: args.messages
+				messages: args.messages,
+				system: args.system
 			}),
 			headers: {
 				"Content-Type": "application/json"

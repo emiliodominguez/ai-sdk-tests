@@ -1,24 +1,5 @@
 $prompt-height: 100px;
 
-%btn {
-	background-color: transparent;
-	border: none;
-	outline: none;
-	transition:
-		opacity ease 250ms,
-		background-color ease 250ms,
-		color ease 250ms;
-	cursor: pointer;
-
-	&:disabled {
-		opacity: 0.5;
-	}
-
-	&:focus {
-		box-shadow: 0 0 0 2px #aaa;
-	}
-}
-
 .chat {
 	height: 100dvh;
 	display: grid;
@@ -54,16 +35,10 @@ $prompt-height: 100px;
 			padding-inline: 2rem;
 
 			.delete {
-				@extend %btn;
-
 				position: absolute;
 				top: 50%;
 				right: calc(100% + 0.5rem);
 				transform: translateY(-50%);
-				border-radius: 4px;
-				display: flex;
-				align-items: center;
-				padding: 0.25rem;
 
 				&:hover,
 				&:focus-within {
@@ -73,7 +48,6 @@ $prompt-height: 100px;
 				}
 
 				svg {
-					display: block;
 					fill: #fff;
 					height: 1rem;
 					opacity: 0.5;
@@ -152,19 +126,14 @@ $prompt-height: 100px;
 	}
 
 	button {
-		@extend %btn;
-
-		display: flex;
 		position: absolute;
 		bottom: $btn-offset;
 		right: $btn-offset;
 		width: $btn-size;
 		height: $btn-size;
-		border-radius: 50%;
 		background-color: #fff;
 
 		svg {
-			display: block;
 			height: 1rem;
 			margin: auto;
 		}

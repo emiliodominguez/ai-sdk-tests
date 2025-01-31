@@ -96,6 +96,10 @@ export function SpeechSynthesisProvider(props: { children: React.ReactNode }) {
 	);
 }
 
+/**
+ * Uses the speech synthesis context
+ * @returns The speech synthesis context
+ */
 export function useSpeechSynthesis(): SpeechSynthesisContextType {
 	const context = useContext(SpeechSynthesisContext);
 

@@ -3,12 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import type { CoreMessage } from "ai";
 
+import { useLLMConfiguration } from "@/contexts/configuration";
 // import { useSpeechSynthesis } from "@/contexts/speech-synthesis";
 import { streamChatResponse } from "@/utilities/chat-api";
 import { generateRandomId } from "@/utilities/helpers";
 import { Pencil, TrashCan } from "@/utilities/icons";
 
-import { MarkdownRenderer } from "../mardown-renderer";
+import { MarkdownRenderer, Button } from "../ui";
 import styles from "./chat.module.scss";
 
 const localStorageKey = "chat_messages";
@@ -22,6 +23,7 @@ export function Chat() {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [streaming, setStreaming] = useState<boolean>(false);
 	const streamingRef = useRef<boolean>(streaming);
+	const { systemRole } = useLLMConfiguration();
 	// const speechDebounceId = useRef<number | null>(null);
 	// const { speak } = useSpeechSynthesis();
 
@@ -63,6 +65,7 @@ export function Chat() {
 				streamChatResponse({
 					prompt: promptValue,
 					messages: updatedMessages,
+					system: systemRole,
 					onData: (data) => {
 						setMessages((prev) =>
 							prev.map((message) => {
@@ -166,9 +169,16 @@ export function Chat() {
 				{messages.map((message, i) => (
 					<li key={i} className={[styles["message"], styles[message.role]].join(" ")}>
 						{message.role === "user" && (
-							<button className={styles["delete"]} title="Delete message" onClick={() => deleteChatMessage(message.id)}>
-								<TrashCan />
-							</button>
+							<Button
+								className={styles["delete"]}
+								icon={<TrashCan />}
+								title="Delete message"
+								onClick={() => {
+									const confirmed = confirm("Are you sure you want to delete this message?");
+
+									if (confirmed) deleteChatMessage(message.id);
+								}}
+							/>
 						)}
 
 						<MarkdownRenderer content={message.content as string} />
@@ -190,9 +200,7 @@ export function Chat() {
 					}}
 				/>
 
-				<button type="submit" title="Send" disabled={!prompt || streaming}>
-					<Pencil />
-				</button>
+				<Button type="submit" title="Send" icon={<Pencil />} disabled={!prompt || streaming} circular />
 			</form>
 		</div>
 	);

@@ -1,0 +1,38 @@
+.btn {
+	display: inline-flex;
+	align-items: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+	padding: 0.25rem;
+	transition:
+		opacity ease 250ms,
+		background-color ease 250ms,
+		color ease 250ms;
+	cursor: pointer;
+
+	&:disabled {
+		opacity: 0.5;
+	}
+
+	&:focus {
+		box-shadow: 0 0 0 2px #aaa;
+	}
+
+	&.circular {
+		border-radius: 50%;
+	}
+
+	&.icon-right {
+		.icon {
+			order: 1;
+		}
+	}
+
+	.icon {
+		> * {
+			display: block;
+		}
+	}
+}

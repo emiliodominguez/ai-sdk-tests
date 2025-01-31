@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
-import { type CoreMessage, streamText } from "ai";
-
-import { assistantSystemMessage } from "./system-roles";
+import { streamText } from "ai";
 
 const lmStudio = createOpenAICompatible({
 	name: "lmstudio",
@@ -10,14 +8,13 @@ const lmStudio = createOpenAICompatible({
 });
 
 const encoder = new TextEncoder();
-const useSystemRoles = false;
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-	const { /* prompt, */ messages } = await req.json();
+	const { /* prompt, */ messages, system } = await req.json();
 
 	const result = await streamText({
 		model: lmStudio("llama-3.2-3b-instruct"),
-		messages: useSystemRoles ? getSystemRoleMessage(messages) : messages
+		messages: system ? [system, ...messages] : messages
 		// prompt,
 	});
 
@@ -34,15 +31,4 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 	return new NextResponse(stream);
 	// Alternative (currently not working, most likely an implementation error on my end)
 	// return result.toDataStreamResponse();
-}
-
-/**
- * Adds the system role message to the messages array
- * @param messages The messages array
- * @returns The messages array with the system role message
- */
-function getSystemRoleMessage(messages: CoreMessage[]): CoreMessage[] {
-	const hasSystemMessage = messages[0]?.role === "system";
-
-	return hasSystemMessage ? messages : [assistantSystemMessage, ...messages];
 }
