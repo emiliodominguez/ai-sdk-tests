@@ -23,9 +23,9 @@ export function MarkdownRenderer(props: MarkdownRendererProps) {
 				langPrefix: "hljs language-",
 				highlight(code, lang) {
 					return hljs.highlight(code, { language: hljs.getLanguage(lang) ? lang : "plaintext" }).value;
-				}
-			})
-		)
+				},
+			}),
+		),
 	);
 
 	useEffect(() => {

@@ -6,7 +6,7 @@ const geistSans = Geist({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "AI SDK",
-	description: "A simple AI chatbot using Vercel's AI SDK"
+	description: "A simple AI chatbot using Vercel's AI SDK",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

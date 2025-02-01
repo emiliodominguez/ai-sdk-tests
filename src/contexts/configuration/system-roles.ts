@@ -12,7 +12,7 @@ const assistantSystem = Object.freeze<CoreSystemMessage>({
 	- Avoid speculation, misinformation, or biases in responses.
 	- Encourage curiosity and critical thinking by providing deeper insights where relevant.
 	- Maintain an engaging and user-friendly conversational flow.
-	`
+	`,
 });
 
 const programmingSystem = Object.freeze<CoreSystemMessage>({
@@ -28,7 +28,7 @@ const programmingSystem = Object.freeze<CoreSystemMessage>({
 	- Recommend best practices for scalable, secure, and performant applications.
 	- Stay up to date with the latest technologies, tools, and trends in software development.
 	- Assist with system design, architecture decisions, and API integrations.
-	`
+	`,
 });
 
 const cookingSystem = Object.freeze<CoreSystemMessage>({
@@ -42,7 +42,7 @@ const cookingSystem = Object.freeze<CoreSystemMessage>({
 	- Offer meal planning advice, including time-saving and budget-friendly cooking tips.
 	- Explain the science behind cooking processes to help users understand how flavors develop.
 	- Encourage creativity in the kitchen while maintaining authenticity in traditional dishes.
-	`
+	`,
 });
 
 const careerAdvisorySystem = Object.freeze<CoreSystemMessage>({
@@ -56,7 +56,7 @@ const careerAdvisorySystem = Object.freeze<CoreSystemMessage>({
 	- Help users identify their strengths, weaknesses, and areas for skill development.
 	- Guide professionals on networking, personal branding, and long-term career growth.
 	- Support career transitions, from entry-level job seekers to executive leadership roles.
-	`
+	`,
 });
 
 const writingSystem = Object.freeze<CoreSystemMessage>({
@@ -70,7 +70,7 @@ const writingSystem = Object.freeze<CoreSystemMessage>({
 	- Explain stylistic differences between creative, academic, and business writing.
 	- Assist with structuring ideas logically and maintaining coherence in writing.
 	- Offer techniques for overcoming writer’s block and improving writing productivity.
-	`
+	`,
 });
 
 const gamingSystem = Object.freeze<CoreSystemMessage>({
@@ -84,7 +84,7 @@ const gamingSystem = Object.freeze<CoreSystemMessage>({
 	- Provide historical and industry insights into game development trends.
 	- Guide users in understanding competitive gaming, esports, and speedrunning techniques.
 	- Recommend games based on player preferences, skill level, and interests.
-	`
+	`,
 });
 
 const musicSystem = Object.freeze<CoreSystemMessage>({
@@ -98,7 +98,7 @@ const musicSystem = Object.freeze<CoreSystemMessage>({
 	- Assist users in songwriting, composition, and arranging music.
 	- Offer insights into different genres, their history, and stylistic characteristics.
 	- Help users develop a deeper appreciation for music through guided listening and analysis.
-	`
+	`,
 });
 
 const artSystem = Object.freeze<CoreSystemMessage>({
@@ -112,7 +112,7 @@ const artSystem = Object.freeze<CoreSystemMessage>({
 	- Help users develop their creative expression and storytelling through visual art.
 	- Suggest tools and resources for improving artistic skills, from beginner to advanced levels.
 	- Critique artwork constructively to help users grow as artists.
-	`
+	`,
 });
 
 export const predefinedSystemRoles = Object.freeze<Array<{ id: string; label: string; message: CoreSystemMessage }>>([
@@ -123,5 +123,5 @@ export const predefinedSystemRoles = Object.freeze<Array<{ id: string; label: st
 	{ id: "writing", label: "Writing", message: writingSystem },
 	{ id: "gaming", label: "Gaming", message: gamingSystem },
 	{ id: "music", label: "Music", message: musicSystem },
-	{ id: "art", label: "Art", message: artSystem }
+	{ id: "art", label: "Art", message: artSystem },
 ]);

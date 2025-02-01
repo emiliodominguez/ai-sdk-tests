@@ -6,7 +6,7 @@ import type { CoreMessage } from "ai";
 import { useLLMConfiguration } from "@/contexts/configuration";
 // import { useSpeechSynthesis } from "@/contexts/speech-synthesis";
 import { streamChatResponse } from "@/utilities/chat-api";
-import { generateRandomId } from "@/utilities/helpers";
+import { className, generateRandomId } from "@/utilities/helpers";
 import { Pencil, TrashCan } from "@/utilities/icons";
 
 import { MarkdownRenderer, Button } from "../ui";
@@ -59,7 +59,7 @@ export function Chat() {
 					// User prompt
 					{ id, role: "user", content: promptValue },
 					// Assistant response
-					{ id, role: "assistant", content: "" }
+					{ id, role: "assistant", content: "" },
 				];
 
 				streamChatResponse({
@@ -85,7 +85,7 @@ export function Chat() {
 								}
 
 								return message;
-							})
+							}),
 						);
 					},
 					onFinish: () => {
@@ -95,7 +95,7 @@ export function Chat() {
 					onError: () => {
 						setStreaming(false);
 						streamingRef.current = false;
-					}
+					},
 				});
 
 				return updatedMessages;
@@ -140,7 +140,7 @@ export function Chat() {
 		chatRef.current?.scrollTo({
 			top: chatRef.current.scrollHeight,
 			behavior: "smooth",
-			...options
+			...options,
 		});
 	}
 
@@ -167,7 +167,7 @@ export function Chat() {
 		<div ref={chatRef} className={styles["chat"]}>
 			<ul className={styles["messages"]}>
 				{messages.map((message, i) => (
-					<li key={i} className={[styles["message"], styles[message.role]].join(" ")}>
+					<li key={i} {...className(styles["message"], styles[message.role])}>
 						{message.role === "user" && (
 							<Button
 								className={styles["delete"]}

@@ -10,7 +10,7 @@ export const assistantSystemMessage: CoreSystemMessage = Object.freeze({
 	- Explain concepts in simple terms.
 	- Use reliable sources.
 	- Avoid misinformation and speculation.
-	`
+	`,
 });
 
 export const programmingSystemMessage: CoreSystemMessage = Object.freeze({
@@ -27,7 +27,7 @@ export const programmingSystemMessage: CoreSystemMessage = Object.freeze({
 	- Avoid misinformation and speculation.
 	- Help users write better code.
 	- Provide guidance on web development.
-	`
+	`,
 });
 
 export const cookingSystemMessage: CoreSystemMessage = Object.freeze({
@@ -39,7 +39,7 @@ export const cookingSystemMessage: CoreSystemMessage = Object.freeze({
 	- Explain recipes in simple terms.
 	- Use common ingredients and tools (whenever possible).
 	- Avoid rare or exotic ingredients (whenever possible).
-	`
+	`,
 });
 
 export const careerAdvisorySystemMessage: CoreSystemMessage = Object.freeze({
@@ -53,5 +53,5 @@ export const careerAdvisorySystemMessage: CoreSystemMessage = Object.freeze({
 	- Avoid misinformation and speculation.
 	- Help users find their dream job.
 	- Provide guidance on career development.
-	`
+	`,
 });

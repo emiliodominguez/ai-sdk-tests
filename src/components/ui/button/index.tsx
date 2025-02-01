@@ -16,7 +16,7 @@ export function Button({ circular, icon, iconPosition, ...props }: ButtonProps) 
 		<button
 			{...props}
 			{...className(props.className, styles["btn"], styles[`icon-${iconPosition ?? "left"}`], {
-				[styles["circular"]]: !!circular
+				[styles["circular"]]: !!circular,
 			})}
 		>
 			<span className={styles["icon"]}>{icon}</span>

@@ -9,7 +9,7 @@ const LLMConfigurationContext = createContext<LLMConfiguration>(null as never);
 
 export function LLMConfigurationProvider(props: { children: React.ReactNode }) {
 	const [configuration, setConfiguration] = useState<LLMConfiguration>({
-		systemRole: undefined
+		systemRole: undefined,
 	});
 
 	/**

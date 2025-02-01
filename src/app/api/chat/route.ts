@@ -4,7 +4,7 @@ import { streamText } from "ai";
 
 const lmStudio = createOpenAICompatible({
 	name: "lmstudio",
-	baseURL: "http://localhost:1234/v1"
+	baseURL: "http://localhost:1234/v1",
 });
 
 const encoder = new TextEncoder();
@@ -13,8 +13,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 	const { /* prompt, */ messages, system } = await req.json();
 
 	const result = await streamText({
-		model: lmStudio("llama-3.2-3b-instruct"),
-		messages: system ? [system, ...messages] : messages
+		model: lmStudio("meta-llama-3.1-8b-instruct"),
+		messages: system ? [system, ...messages] : messages,
 		// prompt,
 	});
 
@@ -25,7 +25,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 			}
 
 			controller.close();
-		}
+		},
 	});
 
 	return new NextResponse(stream);

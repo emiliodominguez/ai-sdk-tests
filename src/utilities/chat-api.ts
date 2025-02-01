@@ -21,11 +21,11 @@ export async function streamChatResponse(args: {
 			body: JSON.stringify({
 				prompt: args.prompt,
 				messages: args.messages,
-				system: args.system
+				system: args.system,
 			}),
 			headers: {
-				"Content-Type": "application/json"
-			}
+				"Content-Type": "application/json",
+			},
 		});
 
 		if (!response.body) {

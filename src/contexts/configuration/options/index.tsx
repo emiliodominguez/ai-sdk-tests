@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import type { CoreSystemMessage } from "ai";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { className } from "@/utilities/helpers";
 import { Button } from "@/components/ui";
 
 import type { LLMConfiguration } from "../types";
@@ -13,7 +14,7 @@ interface OptionProps extends LLMConfiguration {
 }
 
 export function Options(props: OptionProps) {
-	const [open, setOpen] = useState<boolean>(true);
+	const [open, setOpen] = useState<boolean>(false);
 	const systemRoleTextAreaRef = useRef<HTMLTextAreaElement>(null);
 
 	return (
@@ -33,7 +34,7 @@ export function Options(props: OptionProps) {
 			<AnimatePresence>
 				{open && (
 					<motion.div
-						className={[styles["options"], open ? styles["open"] : ""].join(" ")}
+						{...className(styles["options"], { [styles["open"]]: open })}
 						initial={{ opacity: 0, x: "-100%" }}
 						animate={{ opacity: 1, x: 0 }}
 						exit={{ opacity: 0, x: "-100%" }}
@@ -53,7 +54,7 @@ export function Options(props: OptionProps) {
 									}
 
 									props.updateConfiguration({
-										systemRole: predefinedSystemRoles.find((role) => role.id === e.currentTarget.value)?.message
+										systemRole: predefinedSystemRoles.find((role) => role.id === e.currentTarget.value)?.message,
 									});
 								}}
 							>
@@ -98,6 +99,6 @@ function getSystemRoleMessage(systemRole?: string): CoreSystemMessage | undefine
 
 	return {
 		role: "system",
-		content: systemRole
+		content: systemRole,
 	};
 }
