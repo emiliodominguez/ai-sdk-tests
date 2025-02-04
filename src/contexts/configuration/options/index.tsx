@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { className } from "@/utilities/helpers";
 import { Button } from "@/components/ui";
+import { Menu } from "@/utilities/icons";
 
 import type { LLMConfiguration } from "../types";
 import { predefinedSystemRoles } from "../system-roles";
@@ -27,6 +28,7 @@ export function Options(props: OptionProps) {
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ ease: "easeOut", duration: 0.1 }}
+						onPointerDown={() => setOpen(false)}
 					/>
 				)}
 			</AnimatePresence>
@@ -83,7 +85,7 @@ export function Options(props: OptionProps) {
 			</AnimatePresence>
 
 			<Button className={styles["toggle"]} onClick={() => setOpen(!open)} circular>
-				{open ? "Close" : "Open"}
+				<Menu />
 			</Button>
 		</>
 	);
@@ -91,14 +93,11 @@ export function Options(props: OptionProps) {
 
 /**
  * Gets the system role message
- * @param systemRole The system role
+ * @param content The system message content
  * @returns The system role message
  */
-function getSystemRoleMessage(systemRole?: string): CoreSystemMessage | undefined {
-	if (!systemRole) return;
+function getSystemRoleMessage(content?: string): CoreSystemMessage | undefined {
+	if (!content) return;
 
-	return {
-		role: "system",
-		content: systemRole,
-	};
+	return { role: "system", content };
 }

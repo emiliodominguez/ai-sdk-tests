@@ -34,6 +34,22 @@
 		display: block;
 	}
 
+	label {
+		+ label {
+			margin-top: 2rem;
+		}
+
+		> {
+			margin-bottom: 1rem;
+		}
+	}
+
+	select,
+	textarea {
+		padding: 0.5rem;
+		border-radius: 8px;
+	}
+
 	textarea {
 		width: 100%;
 		min-height: 100px;
@@ -43,10 +59,16 @@
 }
 
 .toggle {
-	top: 1rem;
-	right: 1rem;
+	top: clamp(1rem, 5%, 50px);
+	right: clamp(1rem, 5%, 50px);
 	width: 40px;
 	height: 40px;
 	text-align: center;
 	background-color: #fff;
+
+	svg {
+		display: block;
+		height: 1rem;
+		margin: auto;
+	}
 }
