@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 
 import styles from "./speech-synthesis.module.scss";
+import { isBrowser } from "@/utilities/helpers";
 
 interface SpeechSynthesisContextType {
 	/**
@@ -18,15 +19,15 @@ interface SpeechSynthesisContextType {
 
 const SpeechSynthesisContext = createContext<SpeechSynthesisContextType>(null as never);
 
-const synth = window.speechSynthesis;
+const synth = isBrowser() ? window.speechSynthesis : undefined;
 
 /**
  * Provides the speech synthesis context
  */
 export function SpeechSynthesisProvider(props: { children: React.ReactNode }) {
 	const [speaking, setSpeaking] = useState<boolean>(false);
-	const utterance = useRef<SpeechSynthesisUtterance>(new SpeechSynthesisUtterance());
-	const voices = useRef<SpeechSynthesisVoice[]>(synth.getVoices());
+	const utterance = useRef<SpeechSynthesisUtterance | null>(isBrowser() ? new SpeechSynthesisUtterance() : null);
+	const voices = useRef<SpeechSynthesisVoice[]>(synth?.getVoices() ?? []);
 	const chatAnimatedBubbleRef = useRef<HTMLDivElement>(null);
 
 	/**
@@ -34,6 +35,8 @@ export function SpeechSynthesisProvider(props: { children: React.ReactNode }) {
 	 * @param text The text to speak
 	 */
 	function speak(text: string) {
+		if (!synth || !utterance.current) return;
+
 		utterance.current.text = text;
 		utterance.current.voice = voices.current[0];
 		utterance.current.rate = 1.25;
@@ -68,6 +71,8 @@ export function SpeechSynthesisProvider(props: { children: React.ReactNode }) {
 	}
 
 	useEffect(() => {
+		if (!synth || !utterance.current) return;
+
 		utterance.current.onstart = () => {
 			setSpeaking(true);
 			animateBubble();
