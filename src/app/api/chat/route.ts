@@ -4,7 +4,7 @@ import { streamText } from "ai";
 
 const lmStudio = createOpenAICompatible({
 	name: "lmstudio",
-	baseURL: "http://localhost:1234/v1",
+	baseURL: process.env.LM_STUDIO_SERVER_URL,
 });
 
 const encoder = new TextEncoder();
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 	const { /* prompt, */ messages, system } = await req.json();
 
 	const result = await streamText({
-		model: lmStudio("meta-llama-3.1-8b-instruct"),
+		model: lmStudio(process.env.LM_STUDIO_MODEL_ID),
 		messages: system ? [system, ...messages] : messages,
 		// prompt,
 	});
