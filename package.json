@@ -10,25 +10,25 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
-		"@ai-sdk/openai-compatible": "^0.1.6",
-		"ai": "^4.1.11",
-		"framer-motion": "^12.0.6",
+		"@ai-sdk/openai-compatible": "^0.2.14",
+		"ai": "^4.3.16",
+		"framer-motion": "^12.12.2",
 		"highlight.js": "^11.11.1",
-		"marked": "^15.0.6",
+		"marked": "^15.0.12",
 		"marked-code-format": "^1.1.6",
 		"marked-highlight": "^2.2.1",
-		"next": "15.1.6",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"next": "15.1.8",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",
-		"@types/node": "^20",
+		"@types/node": "^22",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"eslint": "^9",
-		"eslint-config-next": "15.1.6",
-		"sass": "^1.83.4",
+		"eslint-config-next": "15.1.8",
+		"sass": "^1.89.0",
 		"typescript": "^5"
 	}
 }
